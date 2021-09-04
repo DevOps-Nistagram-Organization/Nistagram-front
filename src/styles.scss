@@ -1,4 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.homeHeader {
+  display: flex;
+  height: 60px;
+  background: whitesmoke;
+  box-shadow: 3px 3px 3px 3px lightgrey;
+}
+
+.logoImage {
+  margin: 10px;
+}
+
+.searchHeader {
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  //border: 1px solid black;
+  box-shadow: 3px 3px 3px 3px lightgrey;
+
+}
+
+.postHeader {
+  display: flex;
+  width: 100%;
+}
+
+.postImage {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 3px 3px 3px 3px lightgrey;
+}
+
+.postHeader img {
+  height: 30px;
+  margin: 5px;
+}
+
+.postAuthor {
+  margin: 5px;
+}
+
+.postDate {
+  margin-left: auto;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.reactionButton {
+  width: 30px;
+  margin-left: 5px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.reactionRow {
+  margin: 5px;
+}

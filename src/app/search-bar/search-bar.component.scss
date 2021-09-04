@@ -1,0 +1,22 @@
+input {
+  width: 200px;
+  padding-left: 80px;
+  box-sizing: border-box;
+
+  background: url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_search_48px-128.png);
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: 62px 0;
+}
+input:focus {
+  padding-left: 16px;
+  background-position: 0;
+}
+form {
+  display: flex;
+  width: 300px;
+}
+button {
+  height: 50%;
+  margin: auto;
+}
