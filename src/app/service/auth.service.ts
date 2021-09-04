@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "../model/LoginRequest";
 import {Observable} from "rxjs";
 import {LoginResponse} from "../model/LoginResponse";
+import {RegistrationRequest} from "../model/RegistrationRequest";
+import {RegistrationResponse} from "../model/RegistrationResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,9 @@ export class AuthService {
   login(loginRequest: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.path+'/login',loginRequest);
   }
-
+  register(registrationRequest: RegistrationRequest): Observable<RegistrationResponse> {
+    return this.http.post<RegistrationResponse>(this.path+'/register', registrationRequest);
+  }
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }

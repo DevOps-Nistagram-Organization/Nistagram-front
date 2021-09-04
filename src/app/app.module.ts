@@ -12,13 +12,15 @@ import {MaterialModule} from "./MaterialModule";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptorService} from "./service/token-interceptor-service";
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
