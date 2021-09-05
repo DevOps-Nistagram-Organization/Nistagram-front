@@ -13,6 +13,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptorService} from "./service/token-interceptor-service";
 import { RegistrationComponent } from './registration/registration.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
     HeaderComponent,
     SearchBarComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { RegistrationComponent } from './registration/registration.component';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }],
+  },
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
