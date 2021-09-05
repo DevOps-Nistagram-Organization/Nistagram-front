@@ -16,6 +16,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {DatePipe} from "@angular/common";
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { UserPreviewRowComponent } from './user-preview-row/user-preview-row.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     SearchBarComponent,
     RegistrationComponent,
     UserProfileComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    SearchResultsComponent,
+    UserPreviewRowComponent
   ],
   imports: [
     BrowserModule,

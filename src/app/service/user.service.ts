@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {UserInfo} from "../model/UserInfo";
 import {UsernameWrapper} from "../model/UsernameWrapper";
+import {Search} from "../model/Search";
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,9 @@ export class UserService {
   }
   rejectFollowRequest(usernameWrapper: UsernameWrapper): Observable<UserInfo> {
     return this.http.post<UserInfo>(this.path + '/reject-follow-request', usernameWrapper);
+  }
+
+  search(searchDTO: Search): Observable<Array<UserInfo>> {
+    return this.http.post<Array<UserInfo>>(this.path + '/search', searchDTO);
   }
 }
