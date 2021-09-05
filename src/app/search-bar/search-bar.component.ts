@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-search-bar',
@@ -8,14 +11,24 @@ import {Router} from "@angular/router";
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+              private snackBar: MatSnackBar, private router: Router, private authenticationService: AuthService) {
+    this.searchForm = this.formBuilder.group({
+      searchValue: ['', [Validators.required]]
+    });
   }
+
+
+  searchForm: FormGroup;
 
   ngOnInit(): void {
   }
-
+  get searchValue() {
+    return this.searchForm.controls.searchValue.value as string;
+  }
   search() {
-    this.router.navigateByUrl('search');
+    console.log("Sub");
+    this.router.navigateByUrl('search/'+encodeURIComponent(this.searchValue));
   }
 
 }
