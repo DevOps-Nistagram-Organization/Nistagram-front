@@ -15,6 +15,7 @@ import {TokenInterceptorService} from "./service/token-interceptor-service";
 import { RegistrationComponent } from './registration/registration.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {DatePipe} from "@angular/common";
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {DatePipe} from "@angular/common";
     HeaderComponent,
     SearchBarComponent,
     RegistrationComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
