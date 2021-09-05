@@ -2,7 +2,12 @@
 <div class="editProfile">
   <mat-card>
     <form class="loginForm" [formGroup]="profileForm" (submit)="profileForm.valid && editProfile()" noval>
+      <mat-card-header>
+        <img class="productImage" [src]="url">
+      </mat-card-header>
       <mat-card-content>
+        <input (change)="onFileChanged($event)" class="ng-hide" id="input-file-id" multiple type="file" />
+        <mat-label for="input-file-id" class="md-button md-raised md-primary">Select image</mat-label>
         <div>
           <mat-form-field class="field-full-width">
             <input id="firstName"

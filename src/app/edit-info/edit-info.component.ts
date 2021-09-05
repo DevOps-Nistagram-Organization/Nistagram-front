@@ -32,7 +32,8 @@ export class EditInfoComponent implements OnInit {
 
   profileForm: FormGroup;
   userInfo!: UserInfo;
-
+  selectedFile: File | undefined;
+  url: any;
   ngOnInit(): void {
     this.userService.getMyInfo().subscribe(
       response => {
@@ -45,6 +46,9 @@ export class EditInfoComponent implements OnInit {
         this.profileForm.controls.website.setValue(this.userInfo.website);
         this.profileForm.controls.date.setValue(this.userInfo.dateOfBirth);
         this.profileForm.controls.publicProfile.setValue('' + this.userInfo.publicProfile);
+        if(response.imagePath) {
+          this.url = response.imagePath;
+        }
       }
     )
   }
@@ -90,14 +94,29 @@ export class EditInfoComponent implements OnInit {
     this.userInfo.lastName = this.lastName;
     this.userInfo.firstName = this.firstName;
     this.userInfo.biography = this.bio;
-    this.userService.edit(this.userInfo).subscribe(
-      response=> {
-        this.userInfo = response;
-        this.router.navigateByUrl('myProfile');
-      }, error => {
-        this.snackBar.open("Error editing info");
-      }
-    )
+    this.userService.edit(this.userInfo, this.selectedFile, this.profileEditSuccess.bind(this), this.profileEditFail.bind(this));
+
+  }
+
+  profileEditSuccess() {
+    this.router.navigateByUrl('myProfile');
+  }
+
+  profileEditFail() {
+    this.router.navigateByUrl('myProfile');
+  }
+
+  onFileChanged(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.selectedFile = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (newEvent) => { // called once readAsDataURL is completed
+        this.url = newEvent.target!.result;
+      };
+    }
   }
 
   cancel() {
