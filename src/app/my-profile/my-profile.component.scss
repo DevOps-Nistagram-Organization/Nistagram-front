@@ -1,0 +1,42 @@
+.profileCard{
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  min-height: 270px;
+}
+
+.profileImage {
+  display: block;
+  max-width:250px;
+  max-height:250px;
+  width: auto;
+  height: auto;
+}
+.float {
+  float: left;
+  margin: 10px;
+}
+.posts {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.bio{
+  min-height: 100px;
+}
+.followButton {
+  margin:5px;
+}
+.userCard {
+  margin: 5px;
+  min-height: 60px;
+}
+.smallProfileImage {
+  display: block;
+  max-width:50px;
+  max-height:50px;
+  width: auto;
+  height: auto;
+  float: left;
+}
