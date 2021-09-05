@@ -1,0 +1,41 @@
+<app-header></app-header>
+<mat-card class="profileCard">
+  <div class="float">
+    <img class="profileImage" *ngIf="userInfo && userInfo.imagePath" [src]="userInfo.imagePath" alt="Profile image">
+    <img class="profileImage" *ngIf="!userInfo || !userInfo.imagePath" src="assets/profile.png" alt="Profile image generic">
+  </div>
+  <div>
+    <mat-card-title>{{getName()}}</mat-card-title>
+    <mat-card-subtitle>{{getUsername()}}</mat-card-subtitle>
+    <h5>Birthday: {{getBirthday()}}</h5>
+    <div class="bio">
+      <h3>Biography</h3>
+      <p>
+        {{getBio()}}
+      </p>
+    </div>
+  </div>
+
+</mat-card>
+<mat-tab-group class="profileCard">
+  <mat-tab label="Posts">Posts</mat-tab>
+  <mat-tab label="Followers">
+    <div>
+      <button (click)="followCategory=0" class="followButton" mat-raised-button>Followers</button>
+      <button (click)="followCategory=1" class="followButton" mat-raised-button>Following</button>
+      <button (click)="followCategory=2" class="followButton" mat-raised-button>Sent follow requests</button>
+      <button (click)="followCategory=3" class="followButton" mat-raised-button>Received follow requests</button>
+    </div>
+    <mat-card class="userCard" *ngFor="let user of getFollowerCategory()">
+      <img class="smallProfileImage" *ngIf="user.imagePath" src="{{user.imagePath}}">
+      <img class="smallProfileImage" *ngIf="!user.imagePath" src="assets/profile.png">
+      <mat-card-title>{{user.firstName + " " + user.lastName}}</mat-card-title>
+      <button class="followButton" mat-raised-button (click)="viewProfile(user.username)">View profile</button>
+      <button class="followButton" *ngIf="isFollowing(user.username)" mat-raised-button (click)="unfollow(user.username)">Unfollow</button>
+      <button class="followButton" *ngIf="receivedRequest(user.username)" mat-raised-button (click)="acceptRequest(user.username)">Accept</button>
+      <button class="followButton" *ngIf="receivedRequest(user.username)" mat-raised-button (click)="rejectRequest(user.username)">Reject</button>
+      <button class="followButton" *ngIf="sentRequest(user.username)" mat-raised-button (click)="revokeRequest(user.username)">Revoke</button>
+
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
