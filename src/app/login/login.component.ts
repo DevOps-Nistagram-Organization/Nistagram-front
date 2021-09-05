@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginRequest).subscribe(
       response => {
         this.authService.saveToken(response.token);
+        this.router.navigateByUrl('');
       }, error => {
         this.snackBar.open("Error logging in");
       }

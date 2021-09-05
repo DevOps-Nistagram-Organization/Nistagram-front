@@ -47,4 +47,8 @@ export class UserService {
   search(searchDTO: Search): Observable<Array<UserInfo>> {
     return this.http.post<Array<UserInfo>>(this.path + '/search', searchDTO);
   }
+
+  edit(userInfo: UserInfo): Observable<UserInfo> {
+    return this.http.put<UserInfo>(this.path + '/edit', userInfo);
+  }
 }

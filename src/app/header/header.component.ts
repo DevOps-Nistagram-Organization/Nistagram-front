@@ -23,6 +23,9 @@ export class HeaderComponent implements OnInit {
   goHome() {
     this.router.navigateByUrl('');
   }
+  goProfile() {
+    this.router.navigateByUrl('myProfile');
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
