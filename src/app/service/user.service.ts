@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {UserInfo} from "../model/UserInfo";
 import {UsernameWrapper} from "../model/UsernameWrapper";
 import {Search} from "../model/Search";
+import {ImageService} from "./image.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import {Search} from "../model/Search";
 export class UserService {
   path: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private imageService: ImageService) {
     this.path = `${environment.path}/user-service/user`
   }
 
@@ -27,12 +28,15 @@ export class UserService {
   follow(usernameWrapper: UsernameWrapper): Observable<UserInfo> {
     return this.http.post<UserInfo>(this.path + '/follow', usernameWrapper);
   }
+
   unfollow(usernameWrapper: UsernameWrapper): Observable<UserInfo> {
     return this.http.post<UserInfo>(this.path + '/unfollow', usernameWrapper);
   }
+
   sendFollowRequest(usernameWrapper: UsernameWrapper): Observable<UserInfo> {
     return this.http.post<UserInfo>(this.path + '/send-follow-request', usernameWrapper);
   }
+
   removeFollowRequest(usernameWrapper: UsernameWrapper): Observable<UserInfo> {
     return this.http.post<UserInfo>(this.path + '/remove-follow-request', usernameWrapper);
   }
@@ -40,11 +44,37 @@ export class UserService {
   acceptFollowRequest(usernameWrapper: UsernameWrapper): Observable<UserInfo> {
     return this.http.post<UserInfo>(this.path + '/accept-follow-request', usernameWrapper);
   }
+
   rejectFollowRequest(usernameWrapper: UsernameWrapper): Observable<UserInfo> {
     return this.http.post<UserInfo>(this.path + '/reject-follow-request', usernameWrapper);
   }
 
   search(searchDTO: Search): Observable<Array<UserInfo>> {
     return this.http.post<Array<UserInfo>>(this.path + '/search', searchDTO);
+  }
+
+  edit(userInfo: UserInfo, file: File | undefined, success: Function, failure: Function){
+    if (!file) {
+      this.http.put<UserInfo>(this.path + '/edit', userInfo).subscribe(
+        response => {
+          success();
+        }, error => {
+          failure();
+        }
+      );
+    } else {
+      this.imageService.uploadImage(file).subscribe(
+        response => {
+          userInfo.imagePath = response.url;
+          return this.http.put<UserInfo>(this.path + '/edit', userInfo).subscribe(
+            response => {
+              success();
+            }, error => {
+              failure();
+            }
+          )
+        }
+      );
+    }
   }
 }
