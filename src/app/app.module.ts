@@ -18,6 +18,9 @@ import {DatePipe} from "@angular/common";
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { UserPreviewRowComponent } from './user-preview-row/user-preview-row.component';
+import { HomeComponent } from './home/home.component';
+import { EditInfoComponent } from './edit-info/edit-info.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { UserPreviewRowComponent } from './user-preview-row/user-preview-row.com
     UserProfileComponent,
     MyProfileComponent,
     SearchResultsComponent,
-    UserPreviewRowComponent
+    UserPreviewRowComponent,
+    HomeComponent,
+    EditInfoComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,

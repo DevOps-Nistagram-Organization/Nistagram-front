@@ -1,0 +1,22 @@
+<div class="editProfile">
+  <mat-card>
+    <form class="loginForm" [formGroup]="postForm" (submit)="postForm.valid && post()" noval>
+      <mat-card-header>
+        <img class="postImage" [src]="url">
+      </mat-card-header>
+      <mat-card-content>
+        <input (change)="onFileChanged($event)" class="ng-hide" id="input-file-id" multiple type="file" />
+        <mat-label for="input-file-id" class="md-button md-raised md-primary">Select image</mat-label>
+        <div>
+          <mat-form-field class="field-full-width">
+            <input id="tags"
+                   matInput
+                   formControlName="tags"
+                   placeholder="Tags"/>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <button type="submit" id="postBt" mat-stroked-button color="primary" class="btn-block">Post</button>
+    </form>
+  </mat-card>
+</div>
