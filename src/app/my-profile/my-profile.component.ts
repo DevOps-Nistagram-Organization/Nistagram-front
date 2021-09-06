@@ -74,4 +74,8 @@ export class MyProfileComponent implements OnInit {
     }
     return [];
   }
+
+  editProfile() {
+    this.router.navigateByUrl('editProfile');
+  }
 }
