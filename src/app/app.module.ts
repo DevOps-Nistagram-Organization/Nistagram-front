@@ -20,6 +20,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { UserPreviewRowComponent } from './user-preview-row/user-preview-row.component';
 import { HomeComponent } from './home/home.component';
 import { EditInfoComponent } from './edit-info/edit-info.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EditInfoComponent } from './edit-info/edit-info.component';
     SearchResultsComponent,
     UserPreviewRowComponent,
     HomeComponent,
-    EditInfoComponent
+    EditInfoComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
