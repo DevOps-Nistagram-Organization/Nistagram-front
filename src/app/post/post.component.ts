@@ -76,7 +76,7 @@ export class PostComponent implements OnInit {
 
   isLiked(): boolean {
     for (let user of this.post.likedByUsers) {
-      if(user === this.userInfo.username) {
+      if (user === this.userInfo.username) {
         return true;
       }
     }
@@ -85,7 +85,7 @@ export class PostComponent implements OnInit {
 
   isDisliked() {
     for (let user of this.post.dislikedByUsers) {
-      if(user === this.userInfo.username) {
+      if (user === this.userInfo.username) {
         return true;
       }
     }
@@ -94,10 +94,15 @@ export class PostComponent implements OnInit {
 
   isFavourite() {
     for (let user of this.post.favouredByUsers) {
-      if(user === this.userInfo.username) {
+      if (user === this.userInfo.username) {
         return true;
       }
     }
     return false
+  }
+
+  commentAdded(post: Post) {
+    console.log(post);
+    this.post = post;
   }
 }

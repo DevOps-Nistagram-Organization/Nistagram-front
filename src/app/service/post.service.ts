@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 import {Post} from "../model/Post";
 import {UserInfo} from "../model/UserInfo";
 import {PostIdWrapper} from "../model/PostIdWrapper";
+import {AddComment} from "../model/AddComment";
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +68,8 @@ export class PostService {
   }
   unfavourite(postIdWrapper: PostIdWrapper): Observable<Post> {
     return this.http.post<Post>(this.path+'/unfavourite', postIdWrapper);
+  }
+  comment(addComment: AddComment): Observable<Post> {
+    return this.http.post<Post>(this.path+'/comment', addComment);
   }
 }

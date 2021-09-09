@@ -23,6 +23,8 @@ import { EditInfoComponent } from './edit-info/edit-info.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostComponent } from './post/post.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { CreateCommentComponent } from './create-comment/create-comment.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { PostListComponent } from './post-list/post-list.component';
     EditInfoComponent,
     CreatePostComponent,
     PostComponent,
-    PostListComponent
+    PostListComponent,
+    CreateCommentComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
