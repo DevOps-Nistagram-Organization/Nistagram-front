@@ -2,7 +2,8 @@
 <mat-card class="profileCard">
   <div class="float">
     <img class="profileImage" *ngIf="userInfo && userInfo.imagePath" [src]="userInfo.imagePath" alt="Profile image">
-    <img class="profileImage" *ngIf="!userInfo || !userInfo.imagePath" src="assets/profile.png" alt="Profile image generic">
+    <img class="profileImage" *ngIf="!userInfo || !userInfo.imagePath" src="assets/profile.png"
+         alt="Profile image generic">
   </div>
   <div>
     <mat-card-title>{{getName()}}</mat-card-title>
@@ -15,10 +16,17 @@
       </p>
     </div>
   </div>
-<button (click)="editProfile()" mat-raised-button>Edit profile</button>
+  <button (click)="editProfile()" mat-raised-button>Edit profile</button>
 </mat-card>
 <mat-tab-group class="profileCard">
-  <mat-tab label="Posts">Posts</mat-tab>
+  <mat-tab label="Posts">
+    <div>
+      <button (click)="postCategory=0" class="followButton" mat-raised-button>My Posts</button>
+      <button (click)="postCategory=1" class="followButton" mat-raised-button>Liked</button>
+      <button (click)="postCategory=2" class="followButton" mat-raised-button>Favourite</button>
+      <app-post-list [userInfo]="userInfo" [typeOfPosts]="postCategory"></app-post-list>
+    </div>
+  </mat-tab>
   <mat-tab label="Followers">
     <div>
       <button (click)="followCategory=0" class="followButton" mat-raised-button>Followers</button>
@@ -26,7 +34,8 @@
       <button (click)="followCategory=2" class="followButton" mat-raised-button>Sent follow requests</button>
       <button (click)="followCategory=3" class="followButton" mat-raised-button>Received follow requests</button>
     </div>
-    <app-user-preview-row [otherUserInfo]="user" [userInfo]="userInfo" class="userCard" *ngFor="let user of getFollowerCategory()">
+    <app-user-preview-row [otherUserInfo]="user" [userInfo]="userInfo" class="userCard"
+                          *ngFor="let user of getFollowerCategory()">
     </app-user-preview-row>
   </mat-tab>
 </mat-tab-group>

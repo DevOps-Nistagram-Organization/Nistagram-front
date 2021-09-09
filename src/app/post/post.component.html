@@ -1,0 +1,16 @@
+<mat-card>
+  <h2>{{post.authorUsername}}</h2>
+  <h3>{{post.datePosted | date:'medium' }}</h3>
+  <img [src]="post.imagePath" class="postImage">
+  <h3>Tags</h3>
+  <span class="tag" *ngFor="let tag of post.tags">{{tag}}</span>
+  <div>
+    <button class="likeButtons" *ngIf="!isLiked()" (click)="like()" mat-raised-button>Like</button>
+    <button class="likeButtons" *ngIf="isLiked()" (click)="unlike()"mat-raised-button color="primary">Like</button>
+    <button class="likeButtons" *ngIf="!isDisliked()" (click)="dislike()"mat-raised-button>Dislike</button>
+    <button class="likeButtons" *ngIf="isDisliked()" (click)="undislike()"mat-raised-button color="primary">Dislike</button>
+    <button class="likeButtons" *ngIf="!isFavourite()" (click)="favourite()"mat-raised-button>Favourite</button>
+    <button class="likeButtons" *ngIf="isFavourite()" (click)="unfavourite()"mat-raised-button color="primary">Favourite</button>
+  </div>
+
+</mat-card>

@@ -22,8 +22,9 @@ export class MyProfileComponent implements OnInit {
               private router: Router) {
   }
 
-  userInfo: UserInfo | undefined;
+  userInfo!: UserInfo;
   followCategory = 0;
+  postCategory = 0;
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
@@ -77,5 +78,9 @@ export class MyProfileComponent implements OnInit {
 
   editProfile() {
     this.router.navigateByUrl('editProfile');
+  }
+
+  getPosts(category: number) {
+    this.postCategory = category;
   }
 }
