@@ -1,0 +1,37 @@
+.postImage {
+  display: block;
+  max-width:250px;
+  max-height:250px;
+  width: auto;
+  height: auto;
+}
+.login{
+  width: 50%;
+  height: 300px;
+  margin: auto;
+}
+.loginBox{
+  margin:5px;
+  width: 100%;
+}
+.loginForm{
+  margin: auto;
+  height: 80%;
+}
+mat-card-content{
+  height: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.field-full-width{
+  width: 90%;
+  margin:10px;
+}
+.loginBt {
+  margin-left: 45%;
+}
+.campaignButton {
+  margin: 5px;
+}

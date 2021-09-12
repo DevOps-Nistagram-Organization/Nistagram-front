@@ -7,6 +7,7 @@ import {MyProfileComponent} from "./my-profile/my-profile.component";
 import {SearchResultsComponent} from "./search-results/search-results.component";
 import {HomeComponent} from "./home/home.component";
 import {EditInfoComponent} from "./edit-info/edit-info.component";
+import {CreateCampaignComponent} from "./create-campaign/create-campaign.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'user/:username', component: UserProfileComponent},
   {path: 'myProfile', component: MyProfileComponent},
   {path: 'search/:value', component: SearchResultsComponent},
-  {path: 'editProfile', component: EditInfoComponent}];
+  {path: 'editProfile', component: EditInfoComponent},
+  {path: 'createCampaign', component: CreateCampaignComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
