@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ImageService} from "./image.service";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
@@ -17,7 +17,7 @@ export class CampaignService {
     this.path = `${environment.path}/agent-service/campaign`
   }
 
-  createCampaign(createCampaignDto: CreateCampaign, selectedFile: File, success: Function, failure: Function){
+  createCampaign(createCampaignDto: CreateCampaign, selectedFile: File, success: Function, failure: Function) {
     this.imageService.uploadImage(selectedFile).subscribe(
       response => {
         createCampaignDto.imageUrl = response.url;
@@ -31,5 +31,13 @@ export class CampaignService {
         )
       }
     );
+  }
+
+  getAgent(): Observable<Array<Campaign>> {
+    return this.http.get<Array<Campaign>>(this.path + '/getAgent');
+  }
+
+  deleteCampaign(id: number) {
+    return this.http.delete(this.path + '/delete/' + id);
   }
 }

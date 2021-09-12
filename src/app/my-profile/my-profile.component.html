@@ -27,6 +27,11 @@
       <app-post-list [userInfo]="userInfo" [typeOfPosts]="postCategory"></app-post-list>
     </div>
   </mat-tab>
+  <mat-tab label="Campaigns" *ngIf="userInfo.agent">
+    <div>
+      <app-campaign (deleteCampaignEvent)="refreshCampaign()" [campaign]="campaign" *ngFor="let campaign of campaigns"></app-campaign>
+    </div>
+  </mat-tab>
   <mat-tab label="Followers">
     <div>
       <button (click)="followCategory=0" class="followButton" mat-raised-button>Followers</button>

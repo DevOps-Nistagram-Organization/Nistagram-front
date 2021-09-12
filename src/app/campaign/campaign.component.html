@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title>{{campaign.agentUsername}}</mat-card-title>
+  <h3>{{campaign.datePosted | date:'medium' }}</h3>
+  <mat-card-subtitle>Start: {{campaign.startDate | date:'medium' }}
+    End: {{campaign.endDate | date:'medium' }}</mat-card-subtitle>
+  <img [src]="campaign.imageUrl" class="postImage">
+  <mat-card-content>
+    Targets gender: {{campaign.criteria.gender}}
+    <br>
+    Minimum age:{{campaign.criteria.minAge}}
+    <br>
+    Maximum age: {{campaign.criteria.maxAge}}
+    <br>
+    Hours when showing:
+    <span *ngFor="let interval of campaign.intervals">{{formatInterval(interval)}},</span>
+  </mat-card-content>
+  <button mat-raised-button (click)="deleteCampaign()">Delete campaign</button>
+</mat-card>
