@@ -6,6 +6,8 @@ import {DatePipe} from "@angular/common";
 import {AuthService} from "../service/auth.service";
 import {UserInfo} from "../model/UserInfo";
 import {UsernameWrapper} from "../model/UsernameWrapper";
+import {Campaign} from "../model/Campaign";
+import {CampaignService} from "../service/campaign.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -19,12 +21,14 @@ export class MyProfileComponent implements OnInit {
               private snackBar: MatSnackBar,
               private datepipe: DatePipe,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private campaignService: CampaignService) {
   }
 
   userInfo!: UserInfo;
   followCategory = 0;
   postCategory = 0;
+  campaigns = Array<Campaign>();
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
@@ -32,8 +36,13 @@ export class MyProfileComponent implements OnInit {
         response => {
           this.userInfo = response;
         }
-      )
+      );
     }
+    this.campaignService.getAgent().subscribe(
+      response => {
+        this.campaigns = response;
+      }
+    );
   }
 
   getName(): string {
@@ -82,5 +91,13 @@ export class MyProfileComponent implements OnInit {
 
   getPosts(category: number) {
     this.postCategory = category;
+  }
+
+  refreshCampaign() {
+    this.campaignService.getAgent().subscribe(
+      response => {
+        this.campaigns = response;
+      }
+    );
   }
 }
