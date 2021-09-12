@@ -1,0 +1,17 @@
+<div class="editProfile">
+  <mat-card>
+    <form class="loginForm" [formGroup]="commentForm" (submit)="commentForm.valid && commentPost()" noval>
+      <mat-card-content>
+        <div>
+          <mat-form-field class="field-full-width">
+            <input id="comment"
+                   matInput
+                   formControlName="comment"
+                   placeholder="comment"/>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <button type="submit" id="postBt" mat-stroked-button color="primary" class="btn-block">Post</button>
+    </form>
+  </mat-card>
+</div>
