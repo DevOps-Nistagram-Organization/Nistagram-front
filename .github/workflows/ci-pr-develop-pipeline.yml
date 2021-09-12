@@ -1,0 +1,20 @@
+# source: https://faun.pub/continuous-integration-of-java-project-with-github-actions-7a8a0e8246ef
+name: CI operations PR event DEVELOP branch pipeline
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [opened, synchronize, reopened]
+jobs:
+  sonar_nistagram_frontend: # Generated using Sonar Cloud Other (for JS, TS, Go, Python, PHP, ...) build template
+    name: Test - SonarCloud scan (analysis) of nistagram frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
