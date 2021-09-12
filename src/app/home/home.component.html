@@ -1,4 +1,8 @@
 <app-header></app-header>
-<button class="campaignButton" (click)="createCampaign()" mat-raised-button *ngIf="userInfo.agent">Create campaign</button>
+<button class="campaignButton" (click)="createCampaign()" mat-raised-button *ngIf="isAgent()">Create campaign
+</button>
 <app-create-post></app-create-post>
+<div>
+  <app-campaign-post [campaign]="campaign" [userInfo]="userInfo" *ngFor="let campaign of campaigns"></app-campaign-post>
+</div>
 <app-post-list [userInfo]="userInfo" [typeOfPosts]="3"></app-post-list>

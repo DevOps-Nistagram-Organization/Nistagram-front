@@ -40,4 +40,8 @@ export class CampaignService {
   deleteCampaign(id: number) {
     return this.http.delete(this.path + '/delete/' + id);
   }
+
+  getCampaigns(): Observable<Array<Campaign>> {
+    return this.http.get<Array<Campaign>>(this.path + '/get');
+  }
 }

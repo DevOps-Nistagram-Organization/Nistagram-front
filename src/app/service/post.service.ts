@@ -36,7 +36,7 @@ export class PostService {
   }
 
   getPost(id: number): Observable<Post> {
-    return this.http.get<Post>(this.path + "/get" + id);
+    return this.http.get<Post>(this.path + "/get/" + id);
   }
 
   getFeed(): Observable<Array<Post>> {
