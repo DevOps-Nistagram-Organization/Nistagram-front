@@ -25,6 +25,7 @@ import { PostComponent } from './post/post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { CreateCommentComponent } from './create-comment/create-comment.component';
 import { CommentComponent } from './comment/comment.component';
+import { CreateCampaignComponent } from './create-campaign/create-campaign.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CommentComponent } from './comment/comment.component';
     PostComponent,
     PostListComponent,
     CreateCommentComponent,
-    CommentComponent
+    CommentComponent,
+    CreateCampaignComponent
   ],
   imports: [
     BrowserModule,

@@ -44,11 +44,12 @@ export class CreatePostComponent implements OnInit {
   }
 
   success() {
-
+    this.url = "";
+    this.snackBar.open("Successfully added post");
   }
 
   failure() {
-
+    this.snackBar.open("Error adding post");
   }
 
   onFileChanged(event: any) {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {UserInfo} from "../model/UserInfo";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import {UserInfo} from "../model/UserInfo";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userSerivce: UserService) {
+  constructor(private userSerivce: UserService, private router: Router) {
   }
 
   userInfo!: UserInfo;
@@ -20,6 +21,10 @@ export class HomeComponent implements OnInit {
         this.userInfo = response;
       }
     )
+  }
+
+  createCampaign() {
+    this.router.navigateByUrl('createCampaign');
   }
 
 }
