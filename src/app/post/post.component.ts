@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
 
   @Input() post!: Post;
   @Input() userInfo!: UserInfo;
+  @Input() url: string | undefined;
 
   ngOnInit(): void {
   }
@@ -104,5 +105,11 @@ export class PostComponent implements OnInit {
   commentAdded(post: Post) {
     console.log(post);
     this.post = post;
+  }
+
+  imageClick() {
+    if(this.url) {
+      window.open(this.url);
+    }
   }
 }

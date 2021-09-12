@@ -1,7 +1,7 @@
 <mat-card>
   <h2>{{post.authorUsername}}</h2>
   <h3>{{post.datePosted | date:'medium' }}</h3>
-  <img [src]="post.imagePath" class="postImage">
+  <img (click)="imageClick()" [src]="post.imagePath" class="postImage">
   <h3>Tags</h3>
   <span class="tag" *ngFor="let tag of post.tags">{{tag}}</span>
   <div>
