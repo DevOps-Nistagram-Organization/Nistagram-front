@@ -33,5 +33,5 @@ jobs:
     needs: [release]
     steps:
       - uses: actions/checkout@v1
-      - name: Build product service docker image
+      - name: Build Nistagram frontend docker image
         run: bash ./publish-dockerhub.sh ${{ needs.release.outputs.tag_name }} ${{ secrets.DOCKER_USER }} ${{ secrets.DOCKER_PASS }}
