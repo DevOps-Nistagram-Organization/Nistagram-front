@@ -34,5 +34,5 @@ jobs:
     needs: [prerelease]
     steps:
       - uses: actions/checkout@v1
-      - name: Build nistagram frontend docker image
+      - name: Build Nistagram frontend docker image
         run: bash ./publish-dockerhub.sh ${{ needs.prerelease.outputs.tag_name }} ${{ secrets.DOCKER_USER }} ${{ secrets.DOCKER_PASS }}
