@@ -27,7 +27,7 @@ jobs:
           prerelease: true
     outputs:
       tag_name: ${{ steps.tag_version.outputs.new_tag }}
-# komentar
+      
   docker:
     name: Publish - Docker Hub
     runs-on: ubuntu-latest
