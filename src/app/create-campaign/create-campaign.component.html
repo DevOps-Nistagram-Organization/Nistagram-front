@@ -1,0 +1,65 @@
+<app-header></app-header>
+<button class="campaignButton" mat-raised-button (click)="single = true">Single campaign</button>
+<button class="campaignButton" mat-raised-button (click)="single = false">Longer campaign</button>
+<div class="editProfile">
+  <mat-card>
+    <form class="loginForm" [formGroup]="campaignForm" (submit)="campaignForm.valid && post()" noval>
+      <mat-card-header>
+        <img class="postImage" [src]="url">
+      </mat-card-header>
+      <mat-card-content>
+        <input (change)="onFileChanged($event)" class="ng-hide" id="input-file-id" multiple type="file" />
+        <mat-label for="input-file-id" class="md-button md-raised md-primary">Select image</mat-label>
+        <div>
+          <mat-form-field class="field-full-width">
+            <mat-select id="gender" formControlName="gender" placeholder="Gender">
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Both">Both</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <input id="minAge"
+                   matInput
+                   formControlName="minAge"
+                   placeholder="minAge"/>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <input id="maxAge"
+                   matInput
+                   formControlName="maxAge"
+                   placeholder="maxAge"/>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <input id="link"
+                   matInput
+                   formControlName="link"
+                   placeholder="Link"/>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a start date</mat-label>
+            <input matInput [matDatepicker]="pickerStart" formControlName="startDate" id="startDate" placeholder="Start date">
+            <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="!single">
+            <mat-label>Choose a end date</mat-label>
+            <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" id="endDate" placeholder="End date">
+            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <mat-select id="timeIntervals" formControlName="timeIntervals" placeholder="Time intervals" multiple  *ngIf="!single">
+              <mat-option *ngFor="let interval of timeIntervals" [value]="interval">{{getHourFormatted(interval)}}</mat-option>
+            </mat-select>
+            <mat-select id="timeInterval" formControlName="timeInterval" placeholder="Time intervals"  *ngIf="single">
+              <mat-option *ngFor="let interval of timeIntervals" [value]="interval">{{getHourFormatted(interval)}}</mat-option>
+            </mat-select>
+            <mat-error >Intervals can not be blank.</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <button type="submit" id="postBt" mat-stroked-button color="primary" class="btn-block">Post</button>
+    </form>
+  </mat-card>
+</div>

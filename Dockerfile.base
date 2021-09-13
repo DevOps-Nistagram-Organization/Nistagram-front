@@ -1,0 +1,17 @@
+FROM node:alpine3.11
+
+LABEL maintainer="stevicdule@gmail.com"
+
+# Create app directory. This directory must have the same name as the directory in Dockerfile file /app.
+# Our application will be copied in the same directory where npm dependencies are installed
+WORKDIR /app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+
