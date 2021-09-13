@@ -14,14 +14,11 @@
 * Using NGINX in the backend as a reverse proxy
 * Using NGINX in the frontend as a web server for displaying the static content of the dist folder
 * Shell Scripting
-* 3 types of artifacts:
+* 2 types of artifacts:
   * The first type of artifacts: **npm base image** (npm dependencies download acceleration) published on **Docker Hub**
-  * The first type of artifacts: **mvn base image** (mvn dependencies download acceleration) published on **Docker Hub**
-  * The second type of artifacts: publish the **application as a runnable JAR file** on the **GitHub Packages repository**
   * The third type of artifacts: publishing the **application’s Docker image** on **Docker Hub**
-* Heroku
 
-# Agent Instructions
+# Nistagram frontend Instructions
 **Start Docker Daemon:** If you're using Docker for Windows, Then simply start the desktop app installed in:
 ```shell
 C:\Program Files\Docker\Docker\Docker Desktop.exe
@@ -110,26 +107,4 @@ Push your npm base image to Docker Hub
 ```shell
 docker push stevicdule/npm-base-nistagram-frontend:1.0.0-dev
 ```
-## The first type of artifacts: mvn base image (mvn dependencies download acceleration) published on Docker Hub
-Build mvn base image
-```shell
-docker image build -f Dockerfile.base --build-arg STAGE=dev -t stevicdule/mvn-base-agent-product:1.0.0-dev .
-```
-```shell
-docker image build -f Dockerfile.base --build-arg STAGE=dev -t stevicdule/mvn-base-agent-report:1.0.0-dev .
-```
-```shell
-docker image build -f Dockerfile.base --build-arg STAGE=dev -t stevicdule/mvn-base-agent-shop:1.0.0-dev .
-```
-Push your mvn base image to Docker Hub
-```shell
-docker push stevicdule/mvn-base-agent-product:1.0.0-dev
-```
-```shell
-docker push stevicdule/mvn-base-agent-report:1.0.0-dev
-```
-```shell
-docker push stevicdule/mvn-base-agent-shop:1.0.0-dev
-```
-## The second type of artifacts: publish the application as a runnable JAR file on the GitHub Packages repository
 ## The third type of artifacts: publishing the application’s Docker image on Docker Hub
