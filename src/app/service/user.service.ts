@@ -77,4 +77,18 @@ export class UserService {
       );
     }
   }
+
+  mute(username: UsernameWrapper): Observable<UserInfo> {
+    return this.http.post<UserInfo>(this.path + '/mute', username);
+
+  }
+
+  unmute(username: UsernameWrapper): Observable<UserInfo> {
+    return this.http.post<UserInfo>(this.path + '/unmute', username);
+
+  }
+
+  block(username: UsernameWrapper): Observable<UserInfo> {
+    return this.http.post<UserInfo>(this.path + '/block', username);
+  }
 }
