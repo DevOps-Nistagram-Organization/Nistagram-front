@@ -1,0 +1,20 @@
+<app-header></app-header>
+<mat-tab-group class="adminTabs">
+  <mat-tab label="Posts">
+    <app-reported-post *ngFor="let reportedPost of reportedPosts" [reportedPost]="reportedPost"
+                       (postReloadEvent)="reloadPosts()"></app-reported-post>
+  </mat-tab>
+  <mat-tab label="Agents">
+    <mat-card class="agentCard" *ngFor="let agent of agents">
+      <mat-card-title>{{agent.username}}</mat-card-title>
+      <mat-card-subtitle>{{agent.dateOfBirth | date}}</mat-card-subtitle>
+      <mat-card-content>{{agent.website}}</mat-card-content>
+      <img class="profileImage" [src]="agent.imagePath">
+      <div>
+        <button (click)="acceptAgent(agent.username)" class="marginButton" mat-raised-button>Accept</button>
+        <button (click)="rejectAgent(agent.username)" class="marginButton" color="warn" mat-raised-button>Reject
+        </button>
+      </div>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

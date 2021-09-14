@@ -4,6 +4,9 @@ import {AuthService} from "../service/auth.service";
 import {UserInfo} from "../model/UserInfo";
 import {PostService} from "../service/post.service";
 import {PostIdWrapper} from "../model/PostIdWrapper";
+import {AdminService} from "../service/admin.service";
+import {ReportPost} from "../model/ReportPost";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-post',
@@ -13,7 +16,9 @@ import {PostIdWrapper} from "../model/PostIdWrapper";
 export class PostComponent implements OnInit {
 
   constructor(private authService: AuthService,
-              private postService: PostService) {
+              private postService: PostService,
+              private adminService: AdminService,
+              private snackBar: MatSnackBar) {
   }
 
   @Input() post!: Post;
@@ -108,8 +113,17 @@ export class PostComponent implements OnInit {
   }
 
   imageClick() {
-    if(this.url) {
+    if (this.url) {
       window.open(this.url);
     }
+  }
+
+  report() {
+    let reportPost = new ReportPost(this.post.id);
+    this.adminService.reportPost(reportPost).subscribe(
+      response => {
+        this.snackBar.open("Thank you for reporing");
+      }
+    );
   }
 }
