@@ -23,6 +23,7 @@
     <div>
       <button (click)="postCategory=0" class="followButton" mat-raised-button>My Posts</button>
       <button (click)="postCategory=1" class="followButton" mat-raised-button>Liked</button>
+      <button (click)="postCategory=4" class="followButton" mat-raised-button>Disliked</button>
       <button (click)="postCategory=2" class="followButton" mat-raised-button>Favourite</button>
       <app-post-list [userInfo]="userInfo" [typeOfPosts]="postCategory"></app-post-list>
     </div>

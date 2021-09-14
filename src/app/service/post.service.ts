@@ -50,7 +50,9 @@ export class PostService {
   getLiked(): Observable<Array<Post>> {
     return this.http.get<Array<Post>>(this.path + "/getLiked");
   }
-
+  getDisliked(): Observable<Array<Post>> {
+    return this.http.get<Array<Post>>(this.path + "/getDisliked");
+  }
   getSaved(): Observable<Array<Post>> {
     return this.http.get<Array<Post>>(this.path + "/getSaved");
   }
