@@ -1,8 +1,12 @@
-<form [formGroup]="searchForm"  (ngSubmit)="search()">
-  <mat-form-field>
-    <input id="searchValue"
-           matInput
-           formControlName="searchValue" type="text" placeholder="Search"/>
-  </mat-form-field>
-  <button mat-raised-button>Search</button>
-</form>
+<div>
+  <form [formGroup]="searchForm"  (ngSubmit)="search()">
+    <mat-form-field>
+      <input id="searchValue"
+             matInput
+             formControlName="searchValue" type="text" placeholder="Search"/>
+    </mat-form-field>
+    <button mat-raised-button>Search</button>
+  </form>
+  <button (click)="searchTag()" class="searchButton" mat-raised-button>Search posts</button>
+</div>
+
