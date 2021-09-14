@@ -5,6 +5,7 @@ export class RegistrationRequest {
               public password: string,
               public email: string,
               public gender: string,
+              public website: string,
               public dateOfBirth: Date,
               public agent: boolean) {
   }
