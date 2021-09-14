@@ -26,9 +26,11 @@ export class SearchBarComponent implements OnInit {
   get searchValue() {
     return this.searchForm.controls.searchValue.value as string;
   }
+
   search() {
-    console.log("Sub");
     this.router.navigateByUrl('search/'+encodeURIComponent(this.searchValue));
   }
-
+  searchTag() {
+    this.router.navigateByUrl('searchTags/'+encodeURIComponent(this.searchValue));
+  }
 }

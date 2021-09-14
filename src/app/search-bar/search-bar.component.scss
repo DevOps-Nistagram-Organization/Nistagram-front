@@ -13,10 +13,14 @@ input:focus {
   background-position: 0;
 }
 form {
-  display: flex;
+  float: left;
   width: 300px;
 }
 button {
   height: 50%;
   margin: auto;
+}
+.searchButton {
+  height: 50%;
+  margin: auto 5px;
 }

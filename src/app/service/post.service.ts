@@ -42,34 +42,48 @@ export class PostService {
   getFeed(): Observable<Array<Post>> {
     return this.http.get<Array<Post>>(this.path + "/getFeed");
   }
+
   getMyPosts(): Observable<Array<Post>> {
     return this.http.get<Array<Post>>(this.path + "/getMyPosts");
   }
+
   getLiked(): Observable<Array<Post>> {
     return this.http.get<Array<Post>>(this.path + "/getLiked");
   }
+
   getSaved(): Observable<Array<Post>> {
     return this.http.get<Array<Post>>(this.path + "/getSaved");
   }
+
   like(postIdWrapper: PostIdWrapper): Observable<Post> {
-    return this.http.post<Post>(this.path+'/like', postIdWrapper);
+    return this.http.post<Post>(this.path + '/like', postIdWrapper);
   }
+
   unlike(postIdWrapper: PostIdWrapper): Observable<Post> {
-    return this.http.post<Post>(this.path+'/unlike', postIdWrapper);
+    return this.http.post<Post>(this.path + '/unlike', postIdWrapper);
   }
+
   dislike(postIdWrapper: PostIdWrapper): Observable<Post> {
-    return this.http.post<Post>(this.path+'/dislike', postIdWrapper);
+    return this.http.post<Post>(this.path + '/dislike', postIdWrapper);
   }
+
   undislike(postIdWrapper: PostIdWrapper): Observable<Post> {
-    return this.http.post<Post>(this.path+'/undislike', postIdWrapper);
+    return this.http.post<Post>(this.path + '/undislike', postIdWrapper);
   }
+
   favourite(postIdWrapper: PostIdWrapper): Observable<Post> {
-    return this.http.post<Post>(this.path+'/favourite', postIdWrapper);
+    return this.http.post<Post>(this.path + '/favourite', postIdWrapper);
   }
+
   unfavourite(postIdWrapper: PostIdWrapper): Observable<Post> {
-    return this.http.post<Post>(this.path+'/unfavourite', postIdWrapper);
+    return this.http.post<Post>(this.path + '/unfavourite', postIdWrapper);
   }
+
   comment(addComment: AddComment): Observable<Post> {
-    return this.http.post<Post>(this.path+'/comment', addComment);
+    return this.http.post<Post>(this.path + '/comment', addComment);
+  }
+
+  searchByTags(tag: string): Observable<Array<Post>> {
+    return this.http.get<Array<Post>>(this.path + '/searchTag/' + tag);
   }
 }

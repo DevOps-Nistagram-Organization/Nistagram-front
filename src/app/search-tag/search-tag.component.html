@@ -1,0 +1,3 @@
+<app-header></app-header>
+<app-post *ngFor="let post of searchResults" [post]="post" [userInfo]="myUserInfo"></app-post>
+<h1 *ngIf="searchResults.length == 0">No posts</h1>

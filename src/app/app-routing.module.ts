@@ -8,6 +8,7 @@ import {SearchResultsComponent} from "./search-results/search-results.component"
 import {HomeComponent} from "./home/home.component";
 import {EditInfoComponent} from "./edit-info/edit-info.component";
 import {CreateCampaignComponent} from "./create-campaign/create-campaign.component";
+import {SearchTagComponent} from "./search-tag/search-tag.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'myProfile', component: MyProfileComponent},
   {path: 'search/:value', component: SearchResultsComponent},
   {path: 'editProfile', component: EditInfoComponent},
-  {path: 'createCampaign', component: CreateCampaignComponent}];
+  {path: 'createCampaign', component: CreateCampaignComponent},
+  {path: 'searchTags/:tag', component: SearchTagComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

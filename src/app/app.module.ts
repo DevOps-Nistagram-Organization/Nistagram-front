@@ -28,6 +28,7 @@ import { CommentComponent } from './comment/comment.component';
 import { CreateCampaignComponent } from './create-campaign/create-campaign.component';
 import { CampaignComponent } from './campaign/campaign.component';
 import { CampaignPostComponent } from './campaign-post/campaign-post.component';
+import { SearchTagComponent } from './search-tag/search-tag.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CampaignPostComponent } from './campaign-post/campaign-post.component';
     CommentComponent,
     CreateCampaignComponent,
     CampaignComponent,
-    CampaignPostComponent
+    CampaignPostComponent,
+    SearchTagComponent
   ],
   imports: [
     BrowserModule,
