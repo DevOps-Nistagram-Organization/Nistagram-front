@@ -19,6 +19,10 @@
       <button (click)="unfollow()" *ngIf="canUnfollow()" class="followButton" mat-raised-button>Unfollow</button>
       <button (click)="requestFollow()" *ngIf="canRequestFollow()" class="followButton" mat-raised-button>Send Follow Request</button>
       <button (click)="revokeRequest()" *ngIf="canRevokeRequest()" class="followButton" mat-raised-button>Revoke Follow Request</button>
+      <button class="followButton" *ngIf="canMute()" mat-raised-button (click)="mute()">Mute</button>
+      <button class="followButton" *ngIf="canUnMute()" mat-raised-button (click)="unmute()">Unmute</button>
+      <button color="warn" class="followButton" *ngIf="canBlock()" mat-raised-button (click)="blockUser()">Block</button>
+
     </mat-card-content>
   </div>
 

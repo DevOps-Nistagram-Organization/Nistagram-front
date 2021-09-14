@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserInfo} from "../model/UserInfo";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DatePipe} from "@angular/common";
@@ -18,7 +18,8 @@ export class UserProfileComponent implements OnInit {
               private userService: UserService,
               private snackBar: MatSnackBar,
               private datepipe: DatePipe,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
   }
 
   userInfo: UserInfo | undefined;
@@ -104,7 +105,7 @@ export class UserProfileComponent implements OnInit {
     if (this.authService.isLoggedIn() && this.myUserInfo) {
       if (!this.userInfo?.publicProfile) {
         if ((!this.myUserInfo.following.find(value => value.username === this.username) &&
-        !this.myUserInfo?.sentFollowRequests.find(value => value.username === this.username))) {
+          !this.myUserInfo?.sentFollowRequests.find(value => value.username === this.username))) {
           return true;
         }
       }
@@ -113,7 +114,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   canRevokeRequest(): boolean {
-    if(this.myUserInfo?.sentFollowRequests.find(value => value.username === this.username)) {
+    if (this.myUserInfo?.sentFollowRequests.find(value => value.username === this.username)) {
       return true;
     }
     return false;
@@ -121,14 +122,15 @@ export class UserProfileComponent implements OnInit {
 
   follow() {
     this.userService.follow(new UsernameWrapper(this.username ?? "")).subscribe(
-      response=> {
+      response => {
         this.myUserInfo = response;
       }
     );
   }
+
   unfollow() {
     this.userService.unfollow(new UsernameWrapper(this.username ?? "")).subscribe(
-      response=> {
+      response => {
         this.myUserInfo = response;
       }
     );
@@ -136,7 +138,7 @@ export class UserProfileComponent implements OnInit {
 
   requestFollow() {
     this.userService.sendFollowRequest(new UsernameWrapper(this.username ?? "")).subscribe(
-      response=> {
+      response => {
         this.myUserInfo = response;
       }
     );
@@ -144,10 +146,61 @@ export class UserProfileComponent implements OnInit {
 
   revokeRequest() {
     this.userService.removeFollowRequest(new UsernameWrapper(this.username ?? "")).subscribe(
-      response=> {
+      response => {
         this.myUserInfo = response;
       }
     );
   }
 
+  canMute() {
+    if (this.userInfo) {
+      if (this.userInfo.following.find(value => value.username === this.username ?? "") && !this.userInfo.mutedUsers.find(value => value.username === this.username ?? "")) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  mute() {
+    this.userService.mute(new UsernameWrapper(this.username ?? "")).subscribe(
+      response => {
+        this.userInfo = response;
+      }
+    );
+  }
+
+  canUnMute() {
+    if (this.userInfo) {
+      if (this.userInfo.following.find(value => value.username === this.username ?? "") && this.userInfo.mutedUsers.find(value => value.username === this.username ?? "")) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  unmute() {
+    this.userService.unmute(new UsernameWrapper(this.username ?? "")).subscribe(
+      response => {
+        this.snackBar.open("Unmuted user")
+        this.userInfo = response;
+      }
+    );
+  }
+
+  canBlock() {
+    if (this.userInfo) {
+      return true;
+    }
+    return false;
+  }
+
+  blockUser() {
+    this.userService.block(new UsernameWrapper(this.username ?? "")).subscribe(
+      response => {
+        this.snackBar.open("Blocked user")
+        this.userInfo = response;
+        this.router.navigateByUrl('');
+      }
+    );
+  }
 }

@@ -43,9 +43,25 @@ export class SearchResultsComponent implements OnInit {
     this.userService.search(new Search(query ?? "")).subscribe(
       response => {
         this.searchResults = response;
+        this.filterBlockedUsers();
       }, error => {
         this.snackBar.open("Error searching");
       }
     )
+  }
+
+  filterBlockedUsers() {
+    this.searchResults = this.searchResults.filter(value => this.isNotBlocked(value));
+  }
+
+  private isNotBlocked(userInfo: UserInfo): boolean {
+    if(this.myUserInfo) {
+      for(let user of this.myUserInfo.blockedUsers) {
+        if (user.username === userInfo.username) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 }
