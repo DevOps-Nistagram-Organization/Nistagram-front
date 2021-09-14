@@ -21,6 +21,7 @@ export class RegistrationComponent implements OnInit {
       password: ['', [Validators.required]],
       email: ['', [Validators.required]],
       gender: ['', [Validators.required]],
+      website: ['', []],
       date: ['', [Validators.required]],
       agent: ['', [Validators.required]]
 
@@ -60,6 +61,10 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.controls.gender.value as string;
   }
 
+  get website() {
+    return this.registrationForm.controls.website.value as string;
+  }
+
   get date() {
     return this.registrationForm.controls.date.value as string;
   }
@@ -72,7 +77,7 @@ export class RegistrationComponent implements OnInit {
     console.log(this.date);
     const date = new Date(this.date);
     const registrationRequest = new RegistrationRequest(this.username, this.firstName, this.lastName, this.password,
-      this.email, this.gender, date, this.agent);
+      this.email, this.gender, this.website, date, this.agent);
     this.authenticationService.register(registrationRequest).subscribe(
       response => {
         this.router.navigateByUrl('/login');
