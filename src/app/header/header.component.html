@@ -2,8 +2,8 @@
   <img (click)="goHome()" alt="Logo" src="assets/logo.png" class="logoImage"/>
   <app-search-bar class="searchHeader"></app-search-bar>
   <div class="rightButtons">
-    <button *ngIf="isLoggedIn()" mat-raised-button class="rightButton">Saved</button>
     <button *ngIf="isLoggedIn()" mat-raised-button class="rightButton" (click)="goProfile()">Profile</button>
+    <button *ngIf="isLoggedIn()" mat-raised-button class="rightButton" (click)="logOut()">Log Out</button>
     <button *ngIf="!isLoggedIn()" mat-raised-button class="rightButton" (click)="goLogin()">Login</button>
     <button *ngIf="!isLoggedIn()" mat-raised-button class="rightButton" (click)="goRegister()">Register</button></div>
 </div>
