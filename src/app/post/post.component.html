@@ -14,6 +14,7 @@
     <button class="likeButtons" *ngIf="isFavourite()" (click)="unfavourite()" mat-raised-button color="primary">
       Favourite
     </button>
+    <button color="warn" class="likeButtons" *ngIf="isLoggedIn()" (click)="report()" mat-raised-button>Report</button>
   </div>
   <app-comment [comment]="myComment" *ngFor="let myComment of post.comments"></app-comment>
   <app-create-comment [post]="post" (commentAdded)="commentAdded($event)"></app-create-comment>
