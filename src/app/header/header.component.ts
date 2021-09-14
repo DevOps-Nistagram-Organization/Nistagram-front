@@ -38,4 +38,9 @@ export class HeaderComponent implements OnInit {
   logOut() {
     localStorage.removeItem('token');
   }
+
+  isAdmin(): boolean {
+    let roles = this.authService.getRoles();
+    return roles === "ADMIN";
+  }
 }

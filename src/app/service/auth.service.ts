@@ -25,11 +25,13 @@ export class AuthService {
   }
 
   login(loginRequest: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.path+'/login',loginRequest);
+    return this.http.post<LoginResponse>(this.path + '/login', loginRequest);
   }
+
   register(registrationRequest: RegistrationRequest): Observable<RegistrationResponse> {
-    return this.http.post<RegistrationResponse>(this.path+'/register', registrationRequest);
+    return this.http.post<RegistrationResponse>(this.path + '/register', registrationRequest);
   }
+
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
@@ -37,4 +39,22 @@ export class AuthService {
   deleteToken() {
     localStorage.removeItem("token");
   }
+
+  getToken(): string {
+    return (localStorage.getItem("token")) ?? "";
+  }
+
+  getRoles(): string {
+    const jwtData = this.getToken().split('.')[1];
+    if (jwtData) {
+      console.log(jwtData);
+      const decodedJwtJsonData = window.atob(jwtData);
+      const decodedJwtData = JSON.parse(decodedJwtJsonData);
+      if (decodedJwtData.role.length > 0) {
+        return decodedJwtData.role[0].authority;
+      }
+    }
+    return '';
+  }
+
 }
