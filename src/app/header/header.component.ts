@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../service/auth.service";
 
@@ -9,10 +9,12 @@ import {AuthService} from "../service/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) {
+  }
 
   ngOnInit(): void {
   }
+
   goLogin() {
     this.router.navigateByUrl('login');
   }
@@ -20,14 +22,28 @@ export class HeaderComponent implements OnInit {
   goRegister() {
     this.router.navigateByUrl('register');
   }
+
   goHome() {
     this.router.navigateByUrl('');
   }
+
   goProfile() {
     this.router.navigateByUrl('myProfile');
   }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+  }
+
+  isAdmin(): boolean {
+    let roles = this.authService.getRoles();
+    return roles === "ADMIN";
+  }
+  goAdmin() {
+    this.router.navigateByUrl('adminDashboard');
   }
 }

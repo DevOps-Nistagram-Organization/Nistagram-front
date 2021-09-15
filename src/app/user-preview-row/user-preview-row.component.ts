@@ -142,7 +142,7 @@ export class UserPreviewRowComponent implements OnInit {
 
   follow(username: string) {
     this.userService.follow(new UsernameWrapper(username)).subscribe(
-      response=> {
+      response => {
         this.userInfo = response;
       }
     );
@@ -150,8 +150,58 @@ export class UserPreviewRowComponent implements OnInit {
 
   requestFollow(username: string) {
     this.userService.sendFollowRequest(new UsernameWrapper(username)).subscribe(
-      response=> {
+      response => {
         this.userInfo = response;
+      }
+    );
+  }
+
+  canMute(username: string) {
+    if (this.userInfo) {
+      if (this.userInfo.following.find(value => value.username === username) && !this.userInfo.mutedUsers.find(value => value.username === username)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  mute(username: string) {
+    this.userService.mute(new UsernameWrapper(username)).subscribe(
+      response => {
+        this.userInfo = response;
+      }
+    );
+  }
+
+  canUnMute(username: string) {
+    if (this.userInfo) {
+      if (this.userInfo.following.find(value => value.username === username) && this.userInfo.mutedUsers.find(value => value.username === username)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  unmute(username: string) {
+    this.userService.unmute(new UsernameWrapper(username)).subscribe(
+      response => {
+        this.userInfo = response;
+      }
+    );
+  }
+
+  canBlock(username: string) {
+    if (this.userInfo) {
+      return true;
+    }
+    return false;
+  }
+
+  blockUser(username: string) {
+    this.userService.block(new UsernameWrapper(username)).subscribe(
+      response => {
+        this.userInfo = response;
+        this.router.navigateByUrl('');
       }
     );
   }

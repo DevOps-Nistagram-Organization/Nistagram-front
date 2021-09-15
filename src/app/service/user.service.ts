@@ -14,7 +14,7 @@ export class UserService {
   path: string;
 
   constructor(private http: HttpClient, private imageService: ImageService) {
-    this.path = `${environment.path}/user-service/user`
+    this.path = `${environment.path}/api/user/user`
   }
 
   getUserInfo(username: string): Observable<UserInfo> {
@@ -76,5 +76,19 @@ export class UserService {
         }
       );
     }
+  }
+
+  mute(username: UsernameWrapper): Observable<UserInfo> {
+    return this.http.post<UserInfo>(this.path + '/mute', username);
+
+  }
+
+  unmute(username: UsernameWrapper): Observable<UserInfo> {
+    return this.http.post<UserInfo>(this.path + '/unmute', username);
+
+  }
+
+  block(username: UsernameWrapper): Observable<UserInfo> {
+    return this.http.post<UserInfo>(this.path + '/block', username);
   }
 }

@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-title>{{post.authorUsername}}</mat-card-title>
+  <mat-card-subtitle>Reported: {{reportedPost.totalReports}} times</mat-card-subtitle>
+  <mat-card-content>
+    <img [src]="post.imagePath" class="postImage">
+    <div>
+      Tags:
+      <br/>
+      <span class="tag" *ngFor="let tag of post.tags">{{tag}}</span>
+    </div>
+    <div>
+      <button class="marginButton" mat-raised-button color="warn" (click)="acceptReport()">Delete</button>
+      <button class="marginButton" mat-raised-button (click)="rejectReport()">Don't delete</button>
+    </div>
+  </mat-card-content>
+</mat-card>

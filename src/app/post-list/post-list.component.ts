@@ -20,7 +20,7 @@ export class PostListComponent implements OnInit, OnChanges {
     this.loadPosts()
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    console.log(this.typeOfPosts);
     this.loadPosts()
   }
 
@@ -48,6 +48,14 @@ export class PostListComponent implements OnInit, OnChanges {
       this.postService.getFeed().subscribe(
         response => {
           this.posts = response;
+        }
+      );
+    } else if (this.typeOfPosts === 4) {
+      this.postService.getDisliked().subscribe(
+        response => {
+          this.posts = response;
+        }, error => {
+          console.log(error);
         }
       );
     }

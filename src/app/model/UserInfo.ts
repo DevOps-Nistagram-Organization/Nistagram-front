@@ -15,6 +15,8 @@ export class UserInfo {
               public followers: Array<UserInfo>,
               public following: Array<UserInfo>,
               public sentFollowRequests: Array<UserInfo>,
-              public receivedFollowRequests: Array<UserInfo>) {
+              public receivedFollowRequests: Array<UserInfo>,
+              public mutedUsers: Array<UserInfo>,
+              public blockedUsers: Array<UserInfo>) {
   }
 }

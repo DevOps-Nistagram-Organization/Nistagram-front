@@ -14,7 +14,7 @@ export class CampaignService {
   path: string;
 
   constructor(private imageService: ImageService, private http: HttpClient) {
-    this.path = `${environment.path}/agent-service/campaign`
+    this.path = `${environment.path}/api/agent/campaign`
   }
 
   createCampaign(createCampaignDto: CreateCampaign, selectedFile: File, success: Function, failure: Function) {

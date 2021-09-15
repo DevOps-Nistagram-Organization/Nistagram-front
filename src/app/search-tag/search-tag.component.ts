@@ -1,30 +1,32 @@
-import {Component, OnInit} from '@angular/core';
-import {UserInfo} from "../model/UserInfo";
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DatePipe} from "@angular/common";
 import {AuthService} from "../service/auth.service";
+import {UserInfo} from "../model/UserInfo";
 import {Search} from "../model/Search";
+import {PostService} from "../service/post.service";
+import {Post} from "../model/Post";
 
 @Component({
-  selector: 'app-search-results',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss']
+  selector: 'app-search-tag',
+  templateUrl: './search-tag.component.html',
+  styleUrls: ['./search-tag.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchTagComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,
               private userService: UserService,
               private snackBar: MatSnackBar,
               private datepipe: DatePipe,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private postService: PostService) {
   }
 
-  searchResults: Array<UserInfo> = [];
-  myUserInfo: UserInfo | undefined;
-
+  searchResults: Array<Post> = [];
+  myUserInfo!: UserInfo;
   ngOnInit(): void {
     this.router.events.subscribe((val) => {
       this.getSearchResults();
@@ -39,29 +41,13 @@ export class SearchResultsComponent implements OnInit {
     this.getSearchResults();
   }
   getSearchResults() {
-    let query = this.activeRoute.snapshot.paramMap.get("value");
-    this.userService.search(new Search(query ?? "")).subscribe(
+    let query = this.activeRoute.snapshot.paramMap.get("tag");
+    this.postService.searchByTags(query ?? "").subscribe(
       response => {
         this.searchResults = response;
-        this.filterBlockedUsers();
       }, error => {
         this.snackBar.open("Error searching");
       }
-    )
-  }
-
-  filterBlockedUsers() {
-    this.searchResults = this.searchResults.filter(value => this.isNotBlocked(value));
-  }
-
-  private isNotBlocked(userInfo: UserInfo): boolean {
-    if(this.myUserInfo) {
-      for(let user of this.myUserInfo.blockedUsers) {
-        if (user.username === userInfo.username) {
-          return false;
-        }
-      }
-    }
-    return true;
+    );
   }
 }
