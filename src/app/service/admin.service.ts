@@ -16,7 +16,7 @@ export class AdminService {
   path: string;
 
   constructor(private http: HttpClient) {
-    this.path = `${environment.path}/admin-service/admin`
+    this.path = `${environment.path}/api/admin/admin`
   }
 
   acceptReport(reportAnswer: ReportAnswer):Observable<any> {

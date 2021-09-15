@@ -17,7 +17,7 @@ export class PostService {
   path: string;
 
   constructor(private http: HttpClient, private imageService: ImageService) {
-    this.path = `${environment.path}/post-service/post`
+    this.path = `${environment.path}/api/post/post`
   }
 
   createPost(createPost: CreatePost, file: File, success: Function, failure: Function) {

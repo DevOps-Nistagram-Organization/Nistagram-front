@@ -43,4 +43,7 @@ export class HeaderComponent implements OnInit {
     let roles = this.authService.getRoles();
     return roles === "ADMIN";
   }
+  goAdmin() {
+    this.router.navigateByUrl('adminDashboard');
+  }
 }

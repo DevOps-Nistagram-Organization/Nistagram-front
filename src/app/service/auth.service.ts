@@ -14,7 +14,7 @@ export class AuthService {
   path: string;
 
   constructor(private http: HttpClient) {
-    this.path = `${environment.path}/auth-service`
+    this.path = `${environment.path}/api/auth`
   }
 
   isLoggedIn(): boolean {
