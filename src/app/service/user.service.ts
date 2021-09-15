@@ -14,7 +14,7 @@ export class UserService {
   path: string;
 
   constructor(private http: HttpClient, private imageService: ImageService) {
-    this.path = `${environment.path}/user-service/user`
+    this.path = `${environment.path}/api/user/user`
   }
 
   getUserInfo(username: string): Observable<UserInfo> {
